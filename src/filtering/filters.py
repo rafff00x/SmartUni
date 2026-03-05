@@ -4,8 +4,8 @@ from typing import Optional
 
 import pandas as pd
 
-from data.loader import parse_float
-from scoring.scorer import score_row
+from src.data.loader import parse_float
+from src.scoring.scorer import score_row
 
 
 def budget_allowed_categories(budget: str) -> Optional[set]:
@@ -15,7 +15,7 @@ def budget_allowed_categories(budget: str) -> Optional[set]:
     Mapping:
       - Free: free, low
       - <=5000: free, low
-      - <=10000: free, low, medium
+      - <=10000: free, low
       - Any: no filtering (returns None)
     """
     budget = (budget or "").strip()
@@ -24,7 +24,7 @@ def budget_allowed_categories(budget: str) -> Optional[set]:
     if budget == "<=5000":
         return {"free", "low"}
     if budget == "<=10000":
-        return {"free", "low", "medium"}
+        return {"free", "low"}
     return None
 
 

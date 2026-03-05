@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 import pandas as pd
 
-from data.loader import parse_float
+from src.data.loader import parse_float
 
 
 def tier_bonus(tier: str) -> int:

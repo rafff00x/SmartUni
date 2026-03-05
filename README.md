@@ -15,17 +15,18 @@ SmartUni/
 ├── config.py              # Constants (fields, countries, budgets, etc.)
 ├── requirements.txt
 ├── README.md
-├── smartuni_dataset_v4.csv
-├── data/                  # Data loading
-│   └── loader.py
-├── filtering/             # Filter logic
-│   └── filters.py
-├── scoring/               # Scoring logic
-│   └── scorer.py
-├── apply/                 # Application steps by system
-│   └── steps.py
-└── gemini/                # Gemini API for natural language parsing
-    └── parser.py
+├── smartuni_dataset_v3.csv
+└── src/
+    ├── data/              # Data loading
+    │   └── loader.py
+    ├── filtering/         # Filter logic
+    │   └── filters.py
+    ├── scoring/           # Scoring logic
+    │   └── scorer.py
+    ├── apply/             # Application steps by system
+    │   └── steps.py
+    └── gemini/            # Gemini API for natural language parsing
+        └── parser.py
 ```
 
 ## Setup
@@ -37,13 +38,12 @@ SmartUni/
    pip install -r requirements.txt
    ```
 
-3. **Place your dataset** `smartuni_dataset_v4.csv` in the project root (same folder as `app.py`).
+3. **Place your dataset** `smartuni_dataset_v3.csv` in the project root (same folder as `app.py`).
 
-4. **For AI mode**, set your Gemini API key (environment or `.env` file):
+4. **For AI mode**, set your Gemini API key:
    ```bash
    export GEMINI_API_KEY=your_api_key_here
    ```
-   You can copy `.env.example` to `.env` and fill in your key.
    Get a key from [Google AI Studio](https://aistudio.google.com/apikey).
 
 ## Run
