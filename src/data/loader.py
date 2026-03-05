@@ -15,12 +15,10 @@ def safe_str(x) -> str:
 
 
 def normalize_lower(x: str) -> str:
-    """Normalize string to lowercase."""
     return safe_str(x).lower()
 
 
 def parse_float(x) -> Optional[float]:
-    """Parse value to float, return None on failure."""
     try:
         if x is None or (isinstance(x, str) and x.strip() == ""):
             return None
@@ -30,18 +28,6 @@ def parse_float(x) -> Optional[float]:
 
 
 def load_data(path: str) -> pd.DataFrame:
-    """
-    Load CSV dataset with normalization.
-
-    Args:
-        path: Path to CSV file.
-
-    Returns:
-        DataFrame with trimmed strings and normalized columns for matching.
-
-    Raises:
-        FileNotFoundError: If file does not exist.
-    """
     df = pd.read_csv(path)
 
     for col in EXPECTED_COLUMNS:

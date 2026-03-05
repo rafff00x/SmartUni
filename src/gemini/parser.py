@@ -7,9 +7,7 @@ from typing import Optional
 
 from config import BUDGETS, COUNTRIES, FIELDS, STUDY_LANGUAGES
 
-# Try to load variables from a local .env file if python-dotenv is available,
-# but don't crash if the package is missing.
-try:  # pragma: no cover - optional dependency
+try:
     from dotenv import load_dotenv
 
     load_dotenv()
@@ -19,8 +17,6 @@ except ModuleNotFoundError:  # pragma: no cover
 
 @dataclass
 class ParsedPreferences:
-    """Structured preferences extracted from user input."""
-
     field: str
     country: str
     language: str
@@ -30,14 +26,10 @@ class ParsedPreferences:
 
 
 def _get_api_key() -> Optional[str]:
-    """Get Gemini API key from environment."""
     return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
 
 
 def parse_user_desires(user_input: str) -> Optional[ParsedPreferences]:
-    """
-    Use Gemini API to parse natural language into structured preferences.
-    """
     api_key = _get_api_key()
     if not api_key:
         return None
@@ -82,7 +74,6 @@ Return ONLY valid JSON. No markdown. No explanations.
 
         text = response.text.strip()
 
-        # Remove markdown code blocks if Gemini adds them
         if text.startswith("```"):
             parts = text.split("```")
             if len(parts) > 1:

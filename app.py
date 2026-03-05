@@ -14,7 +14,6 @@ LOGO_URL = "PASTE_LOGO_IMAGE_URL_HERE"  # kept for compatibility but not used di
 
 
 def inject_css() -> None:
-    """Inject global CSS for background, inputs, buttons, and cards."""
     st.markdown(
         """
         <style>
@@ -156,7 +155,6 @@ def inject_css() -> None:
 
 
 def render_header(_: str) -> None:
-    """Render the app header with local logo, title, and slogan."""
     logo_path = os.path.join("assets", "logo.png")
 
     hcol1, hcol2 = st.columns([1, 8], vertical_alignment="center")
@@ -169,7 +167,6 @@ def render_header(_: str) -> None:
 
 
 def format_tuition(row) -> str:
-    """Format tuition info for display."""
     cat = row.get("tuition_category", "") or "unknown"
     amt = row.get("tuition_amount", "")
     cur = row.get("tuition_currency", "")
@@ -179,7 +176,6 @@ def format_tuition(row) -> str:
 
 
 def render_result_card(row) -> None:
-    """Render a single result as a styled card."""
     uni = row.get("university_name", "Unknown University")
     prog = row.get("program_name", "Unknown Program")
     score = row.get("score", 0)
@@ -245,7 +241,6 @@ def render_result_card(row) -> None:
 
 
 def _render_results(results):
-    """Render filtered results as a stack of cards."""
     if results.empty:
         st.warning(
             "No matches found with these filters. Try one of these:\n"

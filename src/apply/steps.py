@@ -4,15 +4,6 @@ from typing import List
 
 
 def apply_steps(system: str) -> List[str]:
-    """
-    Generate application steps based on application system.
-
-    Args:
-        system: Application system name (e.g., UCAS, Studielink).
-
-    Returns:
-        List of step strings.
-    """
     s = (system or "").lower()
     if "ucas" in s:
         return [

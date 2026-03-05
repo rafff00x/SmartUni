@@ -8,7 +8,6 @@ from src.data.loader import parse_float
 
 
 def tier_bonus(tier: str) -> int:
-    """Return score bonus for ranking tier."""
     t = (tier or "").strip().upper()
     if t == "A":
         return 15
@@ -22,24 +21,10 @@ def tier_bonus(tier: str) -> int:
 def score_row(
     row: pd.Series, budget: str, gpa_percent: int
 ) -> Tuple[int, List[str]]:
-    """
-    Compute recommendation score (0-100) with explainability.
-
-    Args:
-        row: DataFrame row.
-        budget: Selected budget category.
-        gpa_percent: User GPA as percentage (0-100).
-
-    Returns:
-        Tuple of (score, list of explanation strings).
-    """
     why: List[str] = []
-
-    # Field match (already filtered)
     score = 60
     why.append(f"✅ Field matches: {row.get('field','')}")
 
-    # Budget score
     if budget == "Any":
         score += 15
         why.append("✅ Budget: no limit (Any)")
@@ -54,7 +39,6 @@ def score_row(
         else:
             why.append(f"✅ Budget fits: {budget} (category: {cat})")
 
-    # Tier bonus
     tb = tier_bonus(row.get("ranking_tier", ""))
     score += tb
     if row.get("ranking_tier", "").strip():
@@ -64,7 +48,6 @@ def score_row(
     else:
         why.append("⭐ Ranking tier bonus: neutral")
 
-    # GPA (optional)
     user_gpa_10 = gpa_percent / 10.0
     gpa_min = parse_float(row.get("gpa_min", ""))
     if gpa_min is not None:
